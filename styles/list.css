@@ -101,13 +101,14 @@ p {
 }
 
 .hotelBlock {
-    background-color: rgb(132, 136, 139);
+    background-color: lightgray;
     margin: 2%;
     width: 35%;
 }
 
 #f2 {
-    padding-top: 5px;
+    padding-top: 6px;
+    text-align: center;
 }
 
 #container #l2 .delhihotels .hotelBlock a {
