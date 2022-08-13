@@ -127,8 +127,7 @@ input:focus{
     box-shadow: 10px 10px 10px grey;
 }
 #c6{
-    display: flex;
-    flex-wrap: nowrap;
+    
     box-shadow: 10px 10px 10px grey;
 }
 #c7{
@@ -185,6 +184,9 @@ a{
     justify-content: center;
     align-items: center;
 }
+
+
+
 @media only screen and (min-width: 576px) {
     
 
