@@ -1,26 +1,136 @@
-let loginBTN = document.querySelector('#loginbutton');
-let innerLoginBtn = document.querySelector('#loginFormBtn');
-
-function login(){
-    console.log(document.querySelector('#modalfooter'));
-    const username = document.querySelector('#uname');
-    const pass = document.querySelector('#pw');
-    console.log(username.value, pass.value);
-    if ((username.value === "admin") && (pass.value === "admin")) {
-        alert('successfully loggedin');
-        localStorage.setItem('userName', username);
-        localStorage.setItem('password', pass);
-        loginBTN.innerHTML = `<a href="#" class="btn btn-light" onclick="logout()" id="loginModalBtn">
-        LOGOUT
-        </a>`;
-    } else {
-        alert('username and password cannot be empty');
+let displayHeaderTemplate = () => {
+    var templateHeader=`<a href="index.html"><span><img id="logo" src="./assests1/images/logo.png" alt="logo"></span></a>
+                    <span><button type="button" class="btn btn-light" data-toggle="modal" data-backdrop="false" data-target="#exampleModal" id="loginbutton" onclick="mainLogin(event)">LOGIN</button>
+                    </span>
+    
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+              
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Please Login</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+              
+                        <div class="modal-body" id="modalbody">
+                          <form action="index.html" method="get">
+                            <label for="uname">Username:</label>
+                            <input type="text" id="uname" placeholder="Enter Username" required><br><br>
+              
+                            <label for="pw">Password:</label>
+                            <input type="password" id="pw" placeholder="Enter Password" required><br><br>
+                          </form>
+              
+                        </div>
+              
+                        <div class="modal-footer" id="modalfooter">
+                          <button type="button" class="btn btn-primary" id="modalloginbtn" onclick="login(event)">Login</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>`;
+         document.getElementById('1').innerHTML+=templateHeader;
+    };
+    displayHeaderTemplate();
+    
+    
+    let displayFooterTemplate = () => {
+    var templateFooter=`<div id="f1"><button type="button" class="btn btn-info" data-toggle="modal" data-backdrop="false" data-target="#exampleModal-2" id="loginbutton">
+          Contact Us
+          </button></div>
+          <div id="f2"> © 2020 ROOM SEARCH PVT.LTD</div>
+          <div id="f3">
+          <a href="https://www.facebook.com" target="_blank"><img class="logos" src="./assests1/images/facebook.png"></a>
+          <a href="https://www.instagram.com" target="_blank"><img class="logos" src="./assests1/images/instagram.png"></a>
+          <a href="https://twitter.com" target="_blank"><img class="logos" src="./assests1/images/twitter.png"></a>
+          </div>
+          <div class="modal fade" id="exampleModal-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+    
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Get in touch</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+    
+                    <div class="modal-body">
+                        <form action="index.html" method="GET">
+                            <div>
+                            <span>Thank you for reaching out!!!</span><br>
+                            <span>Please enter your email and we will get back to you.</span>
+                            <br><br>
+                            <label for="mailindex">Email:</label>
+                            <input id="mailindex" type="email" placeholder="Enter your email" required> <br>
+                            
+                            </div>
+                        </form>
+                    </div>
+    
+                    <div class="modal-footer" >
+                      <button type="button" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+              document.getElementById('3').innerHTML=templateFooter;
     }
-};
-
-const logout = () => {
-    localStorage.clear();
-    loginBTN.innerHTML = `<a href="#" class="btn btn-light" data-toggle="modal" data-target="#loginModal" id="loginModalBtn">
-    LOGIN
-    </a>`;
-}
+    displayFooterTemplate();
+    
+    let mainLogin = e => {
+         if (localStorage.getItem('isLogin') === 'true') {
+            localStorage.setItem('isLogin', 'false');
+                    location.reload();
+             }
+    };
+    
+     let login = e => {
+                // setting both username and password to admin
+                localStorage.setItem('username', 'admin');
+                localStorage.setItem('password', 'admin');
+                // setting the user state as non logged on webpage load
+                localStorage.setItem('isLogin', 'false');
+    
+                e.preventDefault();
+                let userElement = document.getElementById('uname');
+                let passwordElement = document.getElementById('pw');
+    
+                if (
+                    userElement.value === localStorage.getItem('username') &&
+                    passwordElement.value === localStorage.getItem('password')
+                ){
+                    localStorage.setItem('isLogin', 'true');
+                    alert('Successfully logged in!');
+                    let loginElement = document.getElementById('loginbutton')
+                    loginElement.dataset.target = '';
+                    loginElement.innerText = 'LOGOUT';
+                    location.reload();
+                }
+                else {
+                    alert('Incorrect credentials! Login failed!');
+                    // clearing values of username & password fields from login modal
+                    userElement.value = '';
+                    passwordElement.value = '';
+                }
+     };
+    
+    let isLogin = localStorage.getItem('isLogin');
+    let loginElement = document.getElementById('loginbutton');
+    
+    let checkLogin = () => {
+        if (!isLogin || isLogin === 'false') {
+            localStorage.clear();
+            loginElement.dataset.target = '#exampleModal';
+            loginElement.innerText = 'LOGIN';
+        } else if (isLogin === 'true') {
+            loginElement.dataset.target = '';
+            loginElement.innerText = 'LOGOUT';
+        }
+    }
+    
+    checkLogin();
+            

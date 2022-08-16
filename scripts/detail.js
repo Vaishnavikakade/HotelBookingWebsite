@@ -1,61 +1,20 @@
-// Per Person Cost
-const perPersonCost = 1000;
-let subTotal;
+const PRICE_PER_ROOM = 1000;
+/* Function to update the Price field in the booking form, according to the dates, number of adults and total price */
+let updatePrice = () => {
+    let adultElement = document.getElementById("adult");
+    let totalPriceElement = document.getElementById("price");
+    let toDateElement = document.getElementById("toDate");
+    let fromDateElement = document.getElementById("fromDate");
 
-document.querySelector('#ttl').value = perPersonCost;
+    let toDateValue = new Date(toDateElement.value);
+    let fromDateValue = new Date(fromDateElement.value);
 
-document.querySelector('#num').addEventListener("change", (e) => {
-    e.preventDefault();
-    const totalAdults = document.querySelector('#num').value;
-    var datePicker1 = document.querySelector('#fdate').value;
-    var datePicker2 = document.querySelector('#tdate').value;
-    if (datePicker1 === '' || datePicker2 === '') {
-        document.querySelector('#ttl').value = `${totalAdults * perPersonCost}`;
-    } else {
-        totalDays = calculateDays();
-        document.querySelector('#ttl').value = `${totalAdults * perPersonCost * totalDays}`;
-    }
-});
+    toDateElement.min = fromDateElement.value;
 
-// From Date datepicker code
-const fromDate = document.querySelector('#fdate');
-const currentTime = new Date();
-var fMonth = currentTime.getMonth() + 1;
-if (fMonth < 10) { fMonth = '0' + fMonth }
-var fYear = currentTime.getFullYear();
-var fDate = currentTime.getDate();
-if (fDate < 10) { fDate = '0' + fDate }
-var currentD = `${fYear}-${fMonth}-${fDate}`;
-fromDate.setAttribute('min', currentD);
+    let days = (toDateValue - fromDateValue)/(24*60*60*1000);
 
-// To Date datepicker code
-const toDate = document.querySelector('#tdate');
-toDate.setAttribute('min', currentD);
-var totalDays;
-var fromDateValue;
-var toDateValue;
-
-// To Display amount based on datepicker's
-document.querySelector('#fdate').addEventListener("change", (e) => {
-    e.preventDefault();
-    const totalAdults = document.querySelector('#num').value;
-    totalDays = calculateDays();
-    document.querySelector('#ttl').value = `${totalAdults * perPersonCost * totalDays}`;
-});
-document.querySelector('#tdate').addEventListener("change", (e) => {
-    e.preventDefault();
-    const totalAdults = document.querySelector('#num').value;
-    totalDays = calculateDays();
-    document.querySelector('#ttl').value = `${totalAdults * perPersonCost * totalDays}`;
-});
-
-// Function to calculate total days
-const calculateDays = () => {
-    var d1 = document.querySelector('#fdate').value;
-    var d2 = document.querySelector('#tdate').value;
-    const dateOne = new Date(d1);
-    const dataTwo = new Date(d2);
-    const time = Math.abs(dataTwo - dateOne);
-    const days = Math.ceil(time / (1000 * 60 * 60 * 24));
-    return days;
+    if(adultElement.value && toDateElement.value && fromDateElement.value)
+        totalPriceElement.value = "Rs. " + parseInt(adultElement.value)*PRICE_PER_ROOM*days;
+    else
+        totalPriceElement.value = "Rs.0";   
 }

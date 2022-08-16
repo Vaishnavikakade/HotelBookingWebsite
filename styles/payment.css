@@ -1,4 +1,4 @@
-#plogo{
+#logo{
     height: 60px;
     width: 60px;
 }
@@ -95,14 +95,27 @@ footer{
     border-radius: 5px;
     background-color: rosybrown;
 }
-  
-@media only screen and (min-width: 576px) {
-    
+#exampleModal{
+    z-index: 20000;
+}
+#modalfooter{
+    display: flex;
+    justify-content: center;    
+}
+#modalbody{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+@media only screen and (max-width: 576px) {
 
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-
+@media only screen and (min-width: 576px) {
+ 
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
@@ -118,5 +131,3 @@ footer{
 @media only screen and (min-width: 1200px) {
  
 }
-
-

@@ -99,43 +99,16 @@ input:focus{
     outline: none;
 }
 .citycardsdiv{
-    display: grid;
-    grid-template-rows: auto auto ;
-    grid-template-columns: auto auto auto auto;
-    grid-gap: 70px;
+    display: flex;
     justify-content: space-evenly;
-    margin-top: 4%;
-    margin-bottom: 4%;
-    
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
-#c1{
+#c1, #c2, #c3, #c4, #c5, #c6, #c7, #c8{
     box-shadow: 10px 10px 10px grey;
     border: 0px;
 }
-#c2{
-    box-shadow: 10px 10px 10px grey;
-    content: Delhi;
-}
-#c3{
-    box-shadow: 10px 10px 10px grey;
-    content: Delhi;
-}
-#c4{
-    box-shadow: 10px 10px 10px grey;
-}
-#c5{
-    box-shadow: 10px 10px 10px grey;
-}
-#c6{
-    
-    box-shadow: 10px 10px 10px grey;
-}
-#c7{
-    box-shadow: 10px 10px 10px grey;
-}
-#c8{
-    box-shadow: 10px 10px 10px grey;
-}
+
 .imagecontent{
     position: relative;
     width: 150px;
@@ -164,7 +137,7 @@ a{
     text-decoration: none;
 }
 .cityspan{
-    position: absolute;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -184,16 +157,18 @@ a{
     justify-content: center;
     align-items: center;
 }
+#nextcardsset{
+    display: none;
+}
 
-
-
-@media only screen and (min-width: 576px) {
-    
+@media only screen and (max-width: 576px) {
 
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-
+@media only screen and (min-width: 576px) {
+ 
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {

@@ -1,4 +1,4 @@
-#llogo {
+#logo {
     height: 60px;
     width: 60px;
 }
@@ -144,10 +144,18 @@ ul {
 .checked{
     color: orange;
 }
-.check{
-    color : orange;
+.checked1.half:after
+{
+margin-left:-24px;
+width:12px;
+color: orange;
 }
-
+.checked1{
+width : 24px;
+ }
+ .check{
+    color: orange;
+ }
 
 .delhiHotels {
     display: flex;
@@ -160,20 +168,18 @@ ul {
 }
 
 
-
 .hotels {
-    height: 250px;
-    width: 300px;
+    height: 200px;
+    width: 250px;
 }
-
-
-@media only screen and (min-width: 576px) {
-
+@media only screen and (max-width: 576px) {
 
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-
+@media only screen and (min-width: 576px) {
+ 
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
